@@ -89,6 +89,7 @@
     <Compile Include="Post_to_Category.cs">
       <DependentUpon>ContectModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Procces.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />

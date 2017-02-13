@@ -10,6 +10,13 @@ namespace TestDotNet_Task
     {
         static void Main(string[] args)
         {
+            Procces proc = new Procces();
+            proc.AddCategory("Products");
+            proc.AddCategory("Boxes");
+            proc.AddCategory("Flowers");
+            proc.AddCategory("Products");
+
+            proc.AddPost("Как найти нужный товар быстро", 10, 1, "И так речь пойдет о...");
 
         }
     }

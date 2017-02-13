@@ -8,3 +8,13 @@ c:\users\anton\documents\visual studio 2012\Projects\TestDotNet_Task\TestDotNet_
 c:\users\anton\documents\visual studio 2012\Projects\TestDotNet_Task\TestDotNet_Task\obj\Debug\TestDotNet_Task.csprojResolveAssemblyReference.cache
 c:\users\anton\documents\visual studio 2012\Projects\TestDotNet_Task\TestDotNet_Task\obj\Debug\TestDotNet_Task.exe
 c:\users\anton\documents\visual studio 2012\Projects\TestDotNet_Task\TestDotNet_Task\obj\Debug\TestDotNet_Task.pdb
+C:\Users\WhoCarryBalckHat\Documents\Visual Studio 2012\Projects\test_dotNet_task\TestDotNet_Task\bin\Debug\TestDotNet_Task.exe.config
+C:\Users\WhoCarryBalckHat\Documents\Visual Studio 2012\Projects\test_dotNet_task\TestDotNet_Task\obj\Debug\TestDotNet_Task.exe
+C:\Users\WhoCarryBalckHat\Documents\Visual Studio 2012\Projects\test_dotNet_task\TestDotNet_Task\obj\Debug\TestDotNet_Task.pdb
+C:\Users\WhoCarryBalckHat\Documents\Visual Studio 2012\Projects\test_dotNet_task\TestDotNet_Task\bin\Debug\TestDotNet_Task.exe
+C:\Users\WhoCarryBalckHat\Documents\Visual Studio 2012\Projects\test_dotNet_task\TestDotNet_Task\bin\Debug\TestDotNet_Task.pdb
+C:\Users\WhoCarryBalckHat\Documents\Visual Studio 2012\Projects\test_dotNet_task\TestDotNet_Task\bin\Debug\EntityFramework.dll
+C:\Users\WhoCarryBalckHat\Documents\Visual Studio 2012\Projects\test_dotNet_task\TestDotNet_Task\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\WhoCarryBalckHat\Documents\Visual Studio 2012\Projects\test_dotNet_task\TestDotNet_Task\bin\Debug\EntityFramework.xml
+C:\Users\WhoCarryBalckHat\Documents\Visual Studio 2012\Projects\test_dotNet_task\TestDotNet_Task\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\WhoCarryBalckHat\Documents\Visual Studio 2012\Projects\test_dotNet_task\TestDotNet_Task\obj\Debug\TestDotNet_Task.csprojResolveAssemblyReference.cache
