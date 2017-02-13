@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BlogingModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="BlogingModelStoreContainer">
+    <EntitySet Name="Blog" EntityType="BlogingModel.Store.Blog" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Blog_to_Category" EntityType="BlogingModel.Store.Blog_to_Category" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Category" EntityType="BlogingModel.Store.Category" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Post_to_Category" EntityType="BlogingModel.Store.Post_to_Category" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Posts" EntityType="BlogingModel.Store.Posts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="BlogingModel.Store.Users" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="Blog_fk0" Association="BlogingModel.Store.Blog_fk0">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Blog" EntitySet="Blog" />
+    </AssociationSet>
+    <AssociationSet Name="Blog_to_Category_fk0" Association="BlogingModel.Store.Blog_to_Category_fk0">
+      <End Role="Blog" EntitySet="Blog" />
+      <End Role="Blog_to_Category" EntitySet="Blog_to_Category" />
+    </AssociationSet>
+    <AssociationSet Name="Blog_to_Category_fk1" Association="BlogingModel.Store.Blog_to_Category_fk1">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Blog_to_Category" EntitySet="Blog_to_Category" />
+    </AssociationSet>
+    <AssociationSet Name="Post_to_Category_fk0" Association="BlogingModel.Store.Post_to_Category_fk0">
+      <End Role="Posts" EntitySet="Posts" />
+      <End Role="Post_to_Category" EntitySet="Post_to_Category" />
+    </AssociationSet>
+    <AssociationSet Name="Post_to_Category_fk1" Association="BlogingModel.Store.Post_to_Category_fk1">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Post_to_Category" EntitySet="Post_to_Category" />
+    </AssociationSet>
+    <AssociationSet Name="Posts_fk0" Association="BlogingModel.Store.Posts_fk0">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Posts" EntitySet="Posts" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Blog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="ClientId" Type="int" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Blog_to_Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="BlogId" Type="int" Nullable="false" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="Created" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+    <Property Name="Modified" Type="datetime" Nullable="false" />
+    <Property Name="Enabled" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Post_to_Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="PostId" Type="int" Nullable="false" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Posts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="Body" Type="nvarchar" Nullable="false" MaxLength="1000" />
+    <Property Name="Created" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+    <Property Name="Modified" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="Created" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+    <Property Name="LastEnter" Type="datetime" Nullable="false" />
+    <Property Name="Rating" Type="int" Nullable="false" />
+    <Property Name="Login" Type="varchar" Nullable="false" MaxLength="250" />
+    <Property Name="Password" Type="varchar" Nullable="false" MaxLength="250" />
+  </EntityType>
+  <Association Name="Blog_fk0">
+    <End Role="Users" Type="BlogingModel.Store.Users" Multiplicity="1" />
+    <End Role="Blog" Type="BlogingModel.Store.Blog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Blog">
+        <PropertyRef Name="ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Blog_to_Category_fk0">
+    <End Role="Blog" Type="BlogingModel.Store.Blog" Multiplicity="1" />
+    <End Role="Blog_to_Category" Type="BlogingModel.Store.Blog_to_Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Blog">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Blog_to_Category">
+        <PropertyRef Name="BlogId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Blog_to_Category_fk1">
+    <End Role="Category" Type="BlogingModel.Store.Category" Multiplicity="1" />
+    <End Role="Blog_to_Category" Type="BlogingModel.Store.Blog_to_Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Blog_to_Category">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Post_to_Category_fk0">
+    <End Role="Posts" Type="BlogingModel.Store.Posts" Multiplicity="1" />
+    <End Role="Post_to_Category" Type="BlogingModel.Store.Post_to_Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Posts">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Post_to_Category">
+        <PropertyRef Name="PostId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Post_to_Category_fk1">
+    <End Role="Category" Type="BlogingModel.Store.Category" Multiplicity="1" />
+    <End Role="Post_to_Category" Type="BlogingModel.Store.Post_to_Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Post_to_Category">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Posts_fk0">
+    <End Role="Users" Type="BlogingModel.Store.Users" Multiplicity="1" />
+    <End Role="Posts" Type="BlogingModel.Store.Posts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Posts">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

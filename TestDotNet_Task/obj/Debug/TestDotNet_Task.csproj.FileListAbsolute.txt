@@ -1,0 +1,10 @@
+c:\users\anton\documents\visual studio 2012\Projects\TestDotNet_Task\TestDotNet_Task\bin\Debug\TestDotNet_Task.exe.config
+c:\users\anton\documents\visual studio 2012\Projects\TestDotNet_Task\TestDotNet_Task\bin\Debug\TestDotNet_Task.exe
+c:\users\anton\documents\visual studio 2012\Projects\TestDotNet_Task\TestDotNet_Task\bin\Debug\TestDotNet_Task.pdb
+c:\users\anton\documents\visual studio 2012\Projects\TestDotNet_Task\TestDotNet_Task\bin\Debug\EntityFramework.dll
+c:\users\anton\documents\visual studio 2012\Projects\TestDotNet_Task\TestDotNet_Task\bin\Debug\EntityFramework.SqlServer.dll
+c:\users\anton\documents\visual studio 2012\Projects\TestDotNet_Task\TestDotNet_Task\bin\Debug\EntityFramework.xml
+c:\users\anton\documents\visual studio 2012\Projects\TestDotNet_Task\TestDotNet_Task\bin\Debug\EntityFramework.SqlServer.xml
+c:\users\anton\documents\visual studio 2012\Projects\TestDotNet_Task\TestDotNet_Task\obj\Debug\TestDotNet_Task.csprojResolveAssemblyReference.cache
+c:\users\anton\documents\visual studio 2012\Projects\TestDotNet_Task\TestDotNet_Task\obj\Debug\TestDotNet_Task.exe
+c:\users\anton\documents\visual studio 2012\Projects\TestDotNet_Task\TestDotNet_Task\obj\Debug\TestDotNet_Task.pdb
