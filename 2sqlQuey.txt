@@ -1,6 +1,6 @@
-SELECT * FROM `users` ORDER BY `rating` DESC  LIMIT 10
+SELECT TOP 10 * FROM Users ORDER BY rating DESC
 
-SELECT Title, Id from Category as C
+SELECT C.Title from Category as C
 	INNER JOIN Post_to_Category as ptc ON ptc.CategoryId = C.Id
 	INNER JOIN Posts as P ON P.Id = ptc.PostId
 	INNER JOIN Users as U ON U.Id = P.UserId where U.Name = 'A'

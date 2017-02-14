@@ -3,83 +3,93 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 
 namespace TestDotNet_Task
 {
     class Procces
     {
         ISmtpSender _sender;
+        string _connectionString;
         public Procces()
         {
             _sender = new MailSender();
+            _connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=usersdb;Integrated Security=True";
         }
 
         public void AddCategory(string categoryTitle)
         {
+            SqlParameter ct = new SqlParameter("@Category", categoryTitle);
+            string sqlExpression = "SELECT id FROM Category WHERE Title = @Category";
             try
             {
-                using (IController<Category> sql = new Controller<Category>())
+                using (SqlConnection connection = new SqlConnection(_connectionString))
                 {
-                    bool priznak = false;
-                    foreach (Category cat in sql.GetAll())
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(sqlExpression, connection);
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.HasRows)
                     {
-                        if (cat.Title == categoryTitle)
-                        {
-                            priznak = true;
-                            break;
-                        }
+                        Console.WriteLine("Error! That {0} category exists in database", categoryTitle);
+                        return;
                     }
 
-                    if (!priznak)
-                    {
-                        sql.Create(new Category { Enabled=1, Title =categoryTitle});
-                        _sender.SendMail("Новая категория "+ categoryTitle);
-                    }
+                    sqlExpression = "INSERT INTO Category (Title, Enabled) VALUES ('@Category', 1)";
+                    command = new SqlCommand(sqlExpression, connection);
+                    int number = command.ExecuteNonQuery();
 
+                    if (number > 0)
+                    {
+                        _sender.SendMail("Added new category is " + categoryTitle);
+                    }
                 }
             }
             catch (Exception ex)
             {
-               Console.WriteLine("Ошибка" + ex.Message);
+                Console.WriteLine("Error occured when try to add new category Info: {0}", ex);
             }
-
         }
 
         public void AddPost(string PostTitle, int userId, int CategoryId, string body)
         {
+            SqlParameter[] myparams = new SqlParameter[4];
+            myparams[0] = new SqlParameter ("@PostTitle", PostTitle);
+            myparams[1] = new SqlParameter ("@userId", userId);
+            myparams[2] = new SqlParameter ("@CategoryId", CategoryId);
+            myparams[3] = new SqlParameter ("@body", body);
 
+            string sqlExpression = "INSERT INTO Posts (Title, Body, UserId) OUTPUT INSERTED.ID VALUES ('@PostTitle', '@body', @userId)";
             try
             {
-                using (IController<Post> sql = new Controller<Post>())
+                using (SqlConnection connection = new SqlConnection(_connectionString))
                 {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(sqlExpression, connection);
+                    Int32 newId = (Int32)command.ExecuteScalar();
 
-                    sql.Create(new Post { Body = body, UserId = userId, Title = PostTitle});
-                    _sender.SendMail("Новый пост " + PostTitle);
+                    if (newId > 0)
+                    {
+                        SqlParameter id = new SqlParameter("@postId", newId);
+                        sqlExpression = "INSERT INTO Category_to_Post (CategoryId, PostId) VALUES (@CategoryId, @postId)";
+                        command = new SqlCommand(sqlExpression, connection);
+                        int number = command.ExecuteNonQuery();
+
+                        if (number > 0)
+                        {
+                            _sender.SendMail("Added new post is " + PostTitle);
+                        }
+                    }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Ошибка" + ex.Message);
+                Console.WriteLine("Error occured when try to add new category Info: {0}", ex);
             }
+        
+          
         }
-
-        public void AddToPostCategory(int postId, int categoryId)
-        {
-            try
-            {
-                using (IController<Post_to_Category> sql = new Controller<Post_to_Category>())
-                {
-                    
-                    sql.Create(new Post_to_Category { CategoryId = categoryId, PostId = postId});
-                    
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Ошибка" + ex.Message);
-            }
-        }
-
 
     }
 
